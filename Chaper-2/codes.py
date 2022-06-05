@@ -1,10 +1,8 @@
-from audioop import avg
-import pyspark
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 
 class Activity:
-	def __init__(self, userId, cartId, itemId):
+	def __init__(self, userId: str, cartId: str, itemId: str):
 		self.userId = userId
 		self.cartId = cartId
 		self.itemId = itemId
