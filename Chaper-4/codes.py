@@ -1,4 +1,3 @@
-from turtle import right
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 
@@ -138,3 +137,17 @@ fullJoined = (
 )
 fullJoined.show()
 
+#Exercise 4.3
+partySize = 4
+hasSeats = (df
+    .join(occupancy, df["name"] == occupancy["storename"])
+    .withColumn("availability", df["capacity"]
+    -occupancy["occupants"])
+)
+hasSeats.show()
+
+hasSeats = (hasSeats
+    .where(hasSeats["availability"] >= partySize)
+    .select("name","availability")
+)
+hasSeats.show()
